@@ -1,0 +1,50 @@
+﻿<Window x:Class="TeslaUtilities.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tesla Model S Music Playlist Writer" 
+        Height="160" Width="400" 
+        WindowStyle="ToolWindow"
+        MinHeight="160" MinWidth="400"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="3,3,0,3"/>
+                <Setter Property="Padding" Value="0,3,0,0"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="0,3,3,3"/>
+            </Style>
+            <Style x:Key="CopyButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Label Grid.Row="0" Grid.Column="0">Selected playlist</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="PlayListName" />
+        <Button Grid.Row="0" Grid.Column="2" Content="..." Width="30" Click="SelectPlayListFile"/>
+
+        <Label Grid.Row="1" Grid.Column="0">Target folder</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetFolder" />
+        <Button Grid.Row="1" Grid.Column="2" Content="..." Width="30" Click="SelectTargetFolder"/>
+
+        <Button Grid.Row="3" Grid.ColumnSpan="3" Content="Copy" Style="{StaticResource CopyButtonStyle}" Click="CopyFiles"/>
+    </Grid>
+</Window>

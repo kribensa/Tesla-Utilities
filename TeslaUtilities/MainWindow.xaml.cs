@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Forms;
 
@@ -28,12 +29,15 @@
             FileRenamer.Process(targetFolder, files);
         }
 
+        /// <summary>
+        /// Selects the play list file.
+        /// </summary>
         private void SelectPlayListFile(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             dialog.CheckFileExists = true;
-            //TODO build filter using GeneralPlayListReader.SupportedReaderTypes
-            dialog.Filter = "M3U Files|*.m3u";
+            var supportedExtensions = GeneralPlayListReader.GetSupportedReaderExtensions();
+            dialog.Filter = BuildDialogFilter(supportedExtensions);
             dialog.Multiselect = false;
             dialog.Title = "Select Playlist File";
             //TODO use MyMusic for first run, and remembered path for subsequent runs
@@ -46,6 +50,20 @@
             }
         }
 
+        /// <summary>
+        /// Builds a dialog filter based on the list of extensions
+        /// </summary>
+        /// <param name="extensions">The file extensions to list in the dialog</param>
+        /// <returns>Returns a dialog filter (eg  "M3U Files|*.m3u")</returns>
+        private string BuildDialogFilter(string[] extensions)
+        {
+            //  "M3U Files|*.m3u";
+            return string.Join("|", extensions.Select(e => e.ToUpper() + " Files|*." + e));
+        }
+
+        /// <summary>
+        /// Selects the target folder.
+        /// </summary>
         private void SelectTargetFolder(object sender, RoutedEventArgs e)
         {
             var dialog = new FolderBrowserDialog();

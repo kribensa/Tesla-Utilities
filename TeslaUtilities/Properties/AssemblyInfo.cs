@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("TeslaUtilities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Kribensa Limited")]
 [assembly: AssemblyProduct("TeslaUtilities")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © Kribensa Limited 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
